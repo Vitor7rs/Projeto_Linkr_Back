@@ -8,4 +8,5 @@ const userSchema = joi.object({
     pictureUrl: joi.string().uri().required()
 });
 
+
 export default userSchema;

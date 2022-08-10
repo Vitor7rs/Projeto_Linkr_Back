@@ -17,3 +17,15 @@ export async function signUp(req, res) {
         return res.status(500).send("Server Error!");
     }
 }
+
+export async function signIn(req, res) {
+    const user = res.locals;
+    try {
+        const token = jwt.sign(user, process.env.JWT_KEY, {expiresIn: "1d"});
+        res.send({name: user.name, token}).status(200);
+    }
+    catch(error) {
+        console.log(error);
+        res.send(error).status(500);
+    }
+}
